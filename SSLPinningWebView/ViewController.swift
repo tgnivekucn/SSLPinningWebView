@@ -57,7 +57,7 @@ extension ViewController: WKNavigationDelegate {
         let host = challenge.protectionSpace.host
         guard authMethod == NSURLAuthenticationMethodServerTrust,
             let serverTrust = challenge.protectionSpace.serverTrust,
-            host == targetHost else {
+            host == URL(string: targetHost)?.host else {
                 return completionHandler(.performDefaultHandling, nil)
         }
 
