@@ -29,7 +29,6 @@ class SSLPinningManager: NSObject, URLSessionDelegate {
             return
         }
         
-        // 驗證伺服器憑證是否匹配
         if isValid(serverTrust: serverTrust) {
             completionHandler(.useCredential, URLCredential(trust: serverTrust))
         } else {
@@ -49,7 +48,6 @@ class SSLPinningManager: NSObject, URLSessionDelegate {
         guard let serverCertificate = SecTrustGetCertificateAtIndex(serverTrust, 0) else { return false }
         let serverCertificateData = SecCertificateCopyData(serverCertificate) as Data
 
-        // 比較伺服器憑證和本地打包的憑證
         return pinnedCertificates.contains(serverCertificateData)
     }
 

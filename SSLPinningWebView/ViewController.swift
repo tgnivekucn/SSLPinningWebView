@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 
         showWebPage(urlString: targetHost)
     }
-    
+
     private func showWebPage(urlString: String) {
         if let url = URL(string: urlString) {
             let request = URLRequest(url: url)
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
             mWebView.navigationDelegate = self
         }
     }
-    
+
     private func testURLSessionTask(urlString: String) {
         guard let url = URL(string: urlString) else {
             return
@@ -41,10 +41,8 @@ class ViewController: UIViewController {
             if let error = error {
                 print("Error: \(error.localizedDescription)")
             } else if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                // 成功響應
                 print("Response success!!")
             } else {
-                // 失敗響應
                 print("Response fail :(")
             }
         }
@@ -84,4 +82,3 @@ extension ViewController: WKNavigationDelegate {
         print("Page load failed with error: \(error.localizedDescription)")
     }
 }
-
